@@ -179,7 +179,7 @@
 //     "mean": 129286.33
 // }
 
-const jobs = {
+const jobsdata  = {
     "results": [
         {
             "salary_max": 61680.91,
@@ -364,18 +364,11 @@ app.get("/", (req, res) => {
     
     // creates an endpoint for the route /api/jobs // endpoint is the adzuna endpoint (this is the invoice)
 app.get("/jobs", (req, res) => {
-    const city = req.query.cityName; // cityName could be changed and is simply "q" key in postman
-    //console.log(city);
-    const apiKey = process.env.API_KEY;
-    const params = new URLSearchParams({
-      q: city,
-      appid: apiKey,
-      units: "Metric",
-    });
-    const url = `https://api.openweathermap.org/data/2.5/weather?${params}`; // we only need to use line 27 or 28 - both are same way of showing url
-    //const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKEY}`
+    const job = req.query.jobName; // jobName could be changed and is simply "q" key in postman
+    //console.log(job);
+    const url = `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=e3f9c2a0&app_key=97106c3ef2dfecfeba52bafbcb8d5cd6&title_only=Software%20Engineer&location0=US&sort_by=relevance&full_time=1`
     //console.log(url);
-    fetch(url) // this line fetches data from weather API (url we made above)
+    fetch(url) // this line fetches data from adzuna API (url we made above)
       .then((res) => res.json()) //comes back as a response in my server and then converts it to json
       .then((data) => {
         // this line returns the data back
@@ -391,4 +384,4 @@ app.get("/jobs", (req, res) => {
   // console.log that your server is up and running
 app.listen(PORT, () => {
     console.log(`BackEnd Server listening on ${PORT}`);
-  });
+  });})

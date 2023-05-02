@@ -3,59 +3,59 @@ import * as ioicons from 'react-icons/io5'
 import MyForm from './Form';
 import Student from './Student';
 
-const ListStudents = () => {
+const ListJobs = () => {
 
     // this is my original state with an array of students 
-    const [students, setStudents] = useState([]);
+    const [jobs, setJobs] = useState([]);
 
     //this is the state needed for the UpdateRequest
-    const [editingStudent, setEditingStudent] = useState(null)
+    // const [editingStudent, setEditingStudent] = useState(null)
 
-    const loadStudents = () => {
+    const loadJobs = () => {
         // A function to fetch the list of students that will be load anytime that list change
-        fetch("http://localhost:8080/api/students")
+        fetch("http://localhost:8080/api/swejobs")
             .then((response) => response.json())
-            .then((students) => {
-                setStudents(students);
+            .then((jobs) => {
+                setJobs(jobs);
             });
     }
 
     useEffect(() => {
-        loadStudents();
+        loadJobs();
     }, []);
 
-    const onSaveStudent = (newStudent) => {
-        //console.log(newStudent, "From the parent - List of Students");
-        setStudents((students) => [...students, newStudent]);
-    }
+    // const onSaveStudent = (newStudent) => {
+    //     //console.log(newStudent, "From the parent - List of Students");
+    //     setStudents((students) => [...students, newStudent]);
+    // }
 
 
     //A function to control the update in the parent (student component)
-    const updateStudent = (savedStudent) => {
-        // console.log("Line 29 savedStudent", savedStudent);
-        // This function should update the whole list of students - 
-        loadStudents();
-    }
+    // const updateStudent = (savedStudent) => {
+    //     // console.log("Line 29 savedStudent", savedStudent);
+    //     // This function should update the whole list of students - 
+    //     loadStudents();
+    // }
 
     //A function to handle the Delete funtionality
-    const onDelete = (student) => {
-        //console.log(student, "delete method")
-        return fetch(`http://localhost:8080/api/students/${student.id}`, {
-            method: "DELETE"
-        }).then((response) => {
-            //console.log(response);
-            if (response.ok) {
-                loadStudents();
-            }
-        })
-    }
+    // const onDelete = (student) => {
+    //     //console.log(student, "delete method")
+    //     return fetch(`http://localhost:8080/api/students/${student.id}`, {
+    //         method: "DELETE"
+    //     }).then((response) => {
+    //         //console.log(response);
+    //         if (response.ok) {
+    //             loadStudents();
+    //         }
+    //     })
+    // }
 
     //A function to handle the Update functionality
-    const onUpdate = (toUpdateStudent) => {
-        //console.log(toUpdateStudent);
-        setEditingStudent(toUpdateStudent);
+    // const onUpdate = (toUpdateStudent) => {
+    //     //console.log(toUpdateStudent);
+    //     setEditingStudent(toUpdateStudent);
 
-    }
+    // }
 
 
 
@@ -64,15 +64,15 @@ const ListStudents = () => {
         <div className="list-students">
             <h2>Techtonica Participants </h2>
             <ul>
-                {students.map((student) => {
-                    return <li key={student.id}> <Student student={student} toDelete={onDelete} toUpdate={onUpdate} /></li>
+                {jobs.map((job,index) => {
+                    return <li key={index}> {job.title}</li> 
                 })}
             </ul>
         </div>
-        <MyForm key={editingStudent ? editingStudent.id : null} onSaveStudent={onSaveStudent} editingStudent={editingStudent} onUpdateStudent={updateStudent} />
+        {/* <MyForm key={editingStudent ? editingStudent.id : null} onSaveStudent={onSaveStudent} editingStudent={editingStudent} onUpdateStudent={updateStudent} /> */}
         </div>
     );
 }
 
 
-export default ListStudents
+export default ListJobs
