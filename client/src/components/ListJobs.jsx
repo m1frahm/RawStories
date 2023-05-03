@@ -72,6 +72,9 @@ const ListJobs = () => {
                 <br></br>
                 <br></br>
                 {job.company.display_name}
+                <br></br>
+                <br></br>
+                <a href={job.redirect_url}>Link to Apply</a>
               </li>
             );
           })}
