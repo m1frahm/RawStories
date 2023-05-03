@@ -65,10 +65,10 @@ const ListJobs = () => {
             return (
               <li key={index}>
                 {" "}
-                {job.title} 
-                <br></br> 
+                {job.title}
                 <br></br>
-                {job.description} 
+                <br></br>
+                {job.description}
                 <br></br>
                 <br></br>
                 {job.company.display_name}
