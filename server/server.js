@@ -16,8 +16,20 @@ app.get("/", (req, res) => {
 
 // create the get request for students in the endpoint '/api/students'
 app.get("/api/swejobs", async (req, res) => {
-  const jobs = dummydata.results;
-  res.send(jobs);
+  var requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+
+  // fetch(
+  //   "https://api.adzuna.com/v1/api/jobs/gb/search/2?app_id=e3f9c2a0&app_key=97106c3ef2dfecfeba52bafbcb8d5cd6&results_per_page=100&what_or=Engineer&title_only=Developer&sort_by=relevance&full_time=1",
+  //   requestOptions
+  // )
+  //   .then((response) => response.text())
+  //   .then((result) => res.send(result))
+  //   .catch((error) => console.log("error", error));
+  // const jobs = dummydata.results;
+  // res.send(jobs);
   // try {
   //   const { rows: students } = await db.query("SELECT * FROM students");
   //   res.send(students);
