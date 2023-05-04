@@ -16,8 +16,44 @@ app.get("/", (req, res) => {
 
 // create the get request for students in the endpoint '/api/students'
 app.get("/api/swejobs", async (req, res) => {
-  const jobs = dummydata.results;
-  res.send(jobs);
+  var requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+
+  const app_key = process.env.API_KEY;
+  const app_id = process.env.API_ID;
+  const params = new URLSearchParams({
+    app_id: app_id,
+    app_key: app_key,
+    results_per_page: 100,
+    what_or: "Engineer",
+    title_only: "Developer",
+    sort_by: "relevance",
+    full_time: 1,
+  });
+  fetch(
+    `https://api.adzuna.com/v1/api/jobs/gb/search/2?${params}`,
+    requestOptions
+  );
+  // .then((response) => response.text())
+  // .then((result) => res.send(result))
+  // .catch((error) => console.log("error", error));
+  try {
+    const response = await fetch(
+      `https://api.adzuna.com/v1/api/jobs/gb/search/2?${params}`,
+      requestOptions
+    );
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+    const result = await response.text();
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error.message);
+  }
+  // res.send(jobs); //this was for the dummy data
   // try {
   //   const { rows: students } = await db.query("SELECT * FROM students");
   //   res.send(students);
@@ -47,22 +83,22 @@ app.get("/api/swejobs", async (req, res) => {
 //   }
 // });
 
-  // fetch(
-  //add url here "add here",
+// fetch(
+//add url here "add here",
 
-  //   requestOptions
-  // )
-  //   .then((response) => response.text())
-  //   .then((result) => res.send(result))
-  //   .catch((error) => console.log("error", error));
-  // const jobs = dummydata.results;
-  // res.send(jobs);
-  // try {
-  //   const { rows: students } = await db.query("SELECT * FROM students");
-  //   res.send(students);
-  // } catch (e) {
-  //   return res.status(400).json({ e });
-  // }
+//   requestOptions
+// )
+//   .then((response) => response.text())
+//   .then((result) => res.send(result))
+//   .catch((error) => console.log("error", error));
+// const jobs = dummydata.results;
+// res.send(jobs);
+// try {
+//   const { rows: students } = await db.query("SELECT * FROM students");
+//   res.send(students);
+// } catch (e) {
+//   return res.status(400).json({ e });
+// }
 //});
 
 // // create the POST request
