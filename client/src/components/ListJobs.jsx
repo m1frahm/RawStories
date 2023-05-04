@@ -15,7 +15,8 @@ const ListJobs = () => {
     fetch("http://localhost:8080/api/swejobs")
       .then((response) => response.json())
       .then((jobs) => {
-        setJobs(jobs);
+        // console.log(jobs);
+        setJobs(jobs.results); //jobs.results is for the api data vs jobs is for the dummy data to output correctly 
       });
   };
 
