@@ -16,7 +16,7 @@ const ListJobs = () => {
       .then((response) => response.json())
       .then((jobs) => {
         // console.log(jobs);
-        setJobs(jobs.results);
+        setJobs(jobs.results); //jobs.results is for the api data vs jobs is for the dummy data to output correctly 
       });
   };
 
