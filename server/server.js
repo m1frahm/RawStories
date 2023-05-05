@@ -5,7 +5,7 @@ const path = require("path");
 const db = require("./db/db-connection.js");
 const dummydata = require("./dummydata.js");
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 app.use(cors());
 app.use(express.json());
 
@@ -14,53 +14,36 @@ app.get("/", (req, res) => {
   res.json({ message: "Hola, from My template ExpressJS with React-Vite" });
 });
 
-// create the get request for students in the endpoint '/api/students'
+// create the get request for students in the endpoint '/api/swe/jobs'
 app.get("/api/swejobs", async (req, res) => {
-  var requestOptions = {
-    method: "GET",
-    redirect: "follow",
-  };
-
   const app_key = process.env.API_KEY;
   const app_id = process.env.API_ID;
   const params = new URLSearchParams({
-    app_id: app_id,
-    app_key: app_key,
     results_per_page: 100,
     what_or: "Engineer",
     title_only: "Developer",
     sort_by: "relevance",
     full_time: 1,
   });
-  fetch(
-    `https://api.adzuna.com/v1/api/jobs/gb/search/2?${params}`,
-    requestOptions
-  );
-  // .then((response) => response.text())
-  // .then((result) => res.send(result))
-  // .catch((error) => console.log("error", error));
   try {
-    const response = await fetch(
-      `https://api.adzuna.com/v1/api/jobs/gb/search/2?${params}`,
-      requestOptions
-    );
-    if (!response.ok) {
-      throw new Error(`Request failed with status ${response.status}`);
-    }
-    const result = await response.text();
-    res.send(result);
+    const URL = `https://api.adzuna.com/v1/api/jobs/gb/search/2?app_id=${app_id}&app_key=${app_key}&${params}`;
+    let request = await fetch(URL);
+    let result = await request.json();
+    console.log(result);
+    res.json(result);
   } catch (error) {
-    console.error(error);
-    res.status(500).send(error.message);
+    console.log(error);
   }
-  // res.send(jobs); //this was for the dummy data
-  // try {
-  //   const { rows: students } = await db.query("SELECT * FROM students");
-  //   res.send(students);
-  // } catch (e) {
-  //   return res.status(400).json({ e });
-  // }
 });
+
+// res.send(jobs); //this was for the dummy data
+// try {
+//   const { rows: students } = await db.query("SELECT * FROM students");
+//   res.send(students);
+// } catch (e) {
+//   return res.status(400).json({ e });
+// }
+//});
 
 // // create the POST request
 // app.post("/api/students", async (req, res) => {
