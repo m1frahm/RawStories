@@ -12,7 +12,7 @@ const ListJobs = () => {
 
   const loadJobs = () => {
     // A function to fetch the list of students that will be load anytime that list change
-    fetch("http://localhost:8080/api/swejobs")
+    fetch("http://localhost:8081/api/swejobs")
       .then((response) => response.json())
       .then((jobs) => {
         // console.log(jobs);
