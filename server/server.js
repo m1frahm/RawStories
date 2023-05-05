@@ -15,26 +15,26 @@ app.get("/", (req, res) => {
 });
 
 // create the get request for students in the endpoint '/api/swe/jobs'
-app.get("/api/swejobs", async (req, res) => {
-  const app_key = process.env.API_KEY;
-  const app_id = process.env.API_ID;
-  const params = new URLSearchParams({
-    results_per_page: 100,
-    what_or: "Engineer",
-    title_only: "Developer",
-    sort_by: "relevance",
-    full_time: 1,
-  });
-  try {
-    const URL = `https://api.adzuna.com/v1/api/jobs/gb/search/2?app_id=${app_id}&app_key=${app_key}&${params}`;
-    let request = await fetch(URL);
-    let result = await request.json();
-    console.log(result);
-    res.json(result);
-  } catch (error) {
-    console.log(error);
-  }
-});
+// app.get("/api/swejobs", async (req, res) => {
+//   const app_key = process.env.API_KEY;
+//   const app_id = process.env.API_ID;
+//   const params = new URLSearchParams({
+//     results_per_page: 100,
+//     what_or: "Engineer",
+//     title_only: "Developer",
+//     sort_by: "relevance",
+//     full_time: 1,
+//   });
+//   try {
+//     const URL = `https://api.adzuna.com/v1/api/jobs/gb/search/2?app_id=${app_id}&app_key=${app_key}&${params}`;
+//     let request = await fetch(URL);
+//     let result = await request.json();
+//     console.log(result);
+//     res.json(result);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 
 // res.send(jobs); //this was for the dummy data
 // try {
