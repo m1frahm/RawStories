@@ -10,15 +10,25 @@ const ListJobs = () => {
   //this is the state needed for the UpdateRequest
   // const [editingStudent, setEditingStudent] = useState(null)
 
+  // A function to fetch the list of students that will be load anytime that list change USING REAL API
   // const loadJobs = () => {
-  //   // A function to fetch the list of students that will be load anytime that list change
   //   fetch("http://localhost:8081/api/swejobs")
   //     .then((response) => response.json())
   //     .then((jobs) => {
   //       // console.log(jobs);
-  //       setJobs(jobs.results); //jobs.results is for the api data vs jobs is for the dummy data to output correctly 
+  //       setJobs(jobs.results); //jobs.results is for the api data vs jobs is for the dummy data to output correctly
   //     });
   // };
+
+  // A function to fetch the list of students that will be load anytime that list change using DUMMY DATA
+  const loadJobs = () => {
+    fetch("http://localhost:8081/api/swejobs")
+      .then((response) => response.json())
+      .then((jobs) => {
+        console.log(jobs);
+        setJobs(jobs); //jobs.results is for the api data vs jobs is for the dummy data to output correctly
+      });
+  };
 
   useEffect(() => {
     loadJobs();

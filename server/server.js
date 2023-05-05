@@ -36,7 +36,12 @@ app.get("/", (req, res) => {
 //   }
 // });
 
-// res.send(jobs); //this was for the dummy data
+// create the get request for students in the endpoint '/api/swe/jobs' for dummy data
+app.get("/api/swejobs", async (req, res) => {
+  const jobs = dummydata.results;
+  res.send(jobs); //this was for the dummy data
+});
+
 // try {
 //   const { rows: students } = await db.query("SELECT * FROM students");
 //   res.send(students);
