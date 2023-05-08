@@ -2,6 +2,8 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Logo from '../assets/BlueTechtonicaWord.png'
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 
 function MyNavBar(props) {
