@@ -5,7 +5,7 @@ import Logo from "../assets/BlueTechtonicaWord.png";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function MyNavBar(props) {
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect, logout } = useAuth0();
 
   return (
     <>
@@ -23,7 +23,15 @@ function MyNavBar(props) {
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
-            <button onClick={() => loginWithRedirect()}>Log In</button>;
+              <button onClick={() => loginWithRedirect()}>Log In</button>
+              <button
+                onClick={() =>
+                  logout({ logoutParams: { returnTo: window.location.origin } })
+                }
+              >
+                {" "}
+                Log Out{" "}
+              </button>
             </Navbar.Text>
           </Navbar.Collapse>
         </Container>
