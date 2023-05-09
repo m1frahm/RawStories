@@ -22,7 +22,7 @@ const ListJobs = () => {
 
   // A function to fetch the list of students that will be load anytime that list change using DUMMY DATA
   const loadJobs = () => {
-    fetch("http://localhost:8081/api/swejobs")
+    fetch("http://localhost:8090/api/swejobs")
       .then((response) => response.json())
       .then((jobs) => {
         console.log(jobs);
