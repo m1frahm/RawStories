@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import MyNavBar from "./components/Navbar";
 import ListJobs from "./components/ListJobs";
 import Stories from "./components/Stories";
+import Profile from "./components/Profile";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -14,9 +15,14 @@ const router = createBrowserRouter([
     path: "/Jobs",
     element: <ListJobs />,
   },
+  {
+    path: "/Profile",
+    element: <Profile />,
+  },
 ]);
 
 function App() {
+  console.log(window.location.origin);
   return (
     <div className="App">
       <MyNavBar />
