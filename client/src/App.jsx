@@ -22,6 +22,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  console.log(window.location.origin);
   return (
     <div className="App">
       <MyNavBar />
