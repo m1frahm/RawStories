@@ -5,7 +5,7 @@ const path = require("path");
 const db = require("./db/db-connection.js");
 const dummydata = require("./dummydata.js");
 const app = express();
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 8090;
 app.use(cors());
 app.use(express.json());
 
@@ -49,6 +49,16 @@ app.get("/api/swejobs", async (req, res) => {
 //   return res.status(400).json({ e });
 // }
 //});
+
+// create a get request for internal API posts in the endpoint '/stories'
+app.get("/api/stories", cors(), async (req, res) => {
+  try {
+    const { rows: posts } = await db.query("SELECT * FROM posts");
+    res.send(posts);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
 
 // // create the POST request
 // app.post("/api/students", async (req, res) => {
@@ -158,5 +168,5 @@ app.get("/api/swejobs", async (req, res) => {
 
 // console.log that your server is up and running
 app.listen(PORT, () => {
-  console.log(`Hola, Server listening on ${PORT}`);
+  console.log(`Back-end Server is listening on ${PORT}`);
 });
