@@ -16,7 +16,7 @@ export default defineConfig({
         secure: false,
       }
     }
-  }
+  },
   test: {
     framework: 'vitest',
     globals: true,
