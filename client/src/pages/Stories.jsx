@@ -9,7 +9,7 @@ export default function StoriesPage() {
     <div>
       Stories Page
 
-      <Link to="/stories/new">Create Story</Link>
+      <Link to="/stories/new">Add New Story</Link>
 
       {stories.length
         ? stories.map((story) => (
