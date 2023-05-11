@@ -13,11 +13,20 @@ export default function IndividualStoryPage() {
     return <div>Loading...</div>;
   }
 
+//Individual Story Page
   return (
     <div>
-      Individual Story Page
       
-      {story.post_title}
+      <b><h1>{story.post_title}</h1> </b>
+      <h5><br></br>
+      Name: {story.interview_person_name}
+      <br></br>
+      Occupation: {story.interview_person_occupation}
+      <br></br>
+      Alma Matter: {story.interview_person_alma}</h5>
+      <br></br>
+      {story.post_body}
+      
     </div>
   );
 }
