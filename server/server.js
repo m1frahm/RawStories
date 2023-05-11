@@ -1,17 +1,20 @@
+const path = require("path");
+const REACT_BUILD_DIR = path.join(__dirname, "..", "client", "dist");
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-const path = require("path");
 const db = require("./db/db-connection.js");
 const dummydata = require("./dummydata.js");
 const app = express();
+app.use(express.static(REACT_BUILD_DIR));
 const PORT = process.env.PORT || 8090;
 app.use(cors());
 app.use(express.json());
 
 // creates an endpoint for the route "/""
 app.get("/", (req, res) => {
-  res.json({ message: "Hola, from My template ExpressJS with React-Vite" });
+  // res.json({ message: "Hola, from My template ExpressJS with React-Vite" });
+  res.sendFile(path.join(REACT_BUILD_DIR, "index.html"));
 });
 
 // create the get request for students in the endpoint '/api/swe/jobs'
@@ -165,7 +168,6 @@ app.get("/api/stories", cors(), async (req, res) => {
 //     return res.status(400).json({ e });
 //   }
 // });
-
 
 // console.log that your server is up and running
 app.listen(PORT, () => {

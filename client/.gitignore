@@ -29,3 +29,4 @@ server/.env
 client/.env
 server/.env
 client/.env
+client/dist 

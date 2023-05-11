@@ -3,6 +3,8 @@ import * as ioicons from "react-icons/io5";
 import MyForm from "./Form";
 import Student from "./Student";
 
+//Note for any functions commented out, be sure to remove http://localhost:8081 if using (it might be 8080 or 8090 as well since ports changed)
+
 const ListJobs = () => {
   // this is my original state with an array of students
   const [jobs, setJobs] = useState([]);
@@ -22,7 +24,7 @@ const ListJobs = () => {
 
   // A function to fetch the list of students that will be load anytime that list change using DUMMY DATA
   const loadJobs = () => {
-    fetch("http://localhost:8090/api/swejobs")
+    fetch("http:/api/swejobs")
       .then((response) => response.json())
       .then((jobs) => {
         console.log(jobs);
