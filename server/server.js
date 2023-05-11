@@ -1,12 +1,12 @@
 const path = require("path");
 const REACT_BUILD_DIR = path.join(__dirname, "..", "client", "dist");
-app.use(express.static(REACT_BUILD_DIR));
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const db = require("./db/db-connection.js");
 const dummydata = require("./dummydata.js");
 const app = express();
+app.use(express.static(REACT_BUILD_DIR));
 const PORT = process.env.PORT || 8090;
 app.use(cors());
 app.use(express.json());
