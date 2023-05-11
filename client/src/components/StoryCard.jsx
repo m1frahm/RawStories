@@ -9,7 +9,7 @@ const StoryCard = () => {
   const [cardData, setCardData] = useState(null);
 
   useEffect(() => {
-    fetch("http:/api") // Replace with your API endpoint
+    fetch("/api") // Replace with your API endpoint
       .then((response) => response.json())
       .then((data) => setCardData(data))
       .catch((error) => console.error("Error fetching card data:", error));
@@ -20,9 +20,9 @@ const StoryCard = () => {
     <div className="card">
       {cardData ? (
         <div>
-          <h3>{cardData.posts.post_title}</h3>
-          <p>{cardData.posts.post_excerpt}</p>
-          <p>{cardData.posts.post_img_url}</p>
+          <h3>{cardData.post_title}</h3>
+          <p>{cardData.post_excerpt}</p>
+          <p>{cardData.post_img_url}</p>
         </div>
       ) : (
         <p>Loading story card data...</p>
