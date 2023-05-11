@@ -1,34 +1,11 @@
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Logo from "../assets/BlueTechtonicaWord.png";
-import { useAuth0 } from "@auth0/auth0-react";
-import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-const StoryCard = () => {
-  const [cardData, setCardData] = useState(null);
-
-  useEffect(() => {
-    fetch("/api") // Replace with your API endpoint
-      .then((response) => response.json())
-      .then((data) => setCardData(data))
-      .catch((error) => console.error("Error fetching card data:", error));
-  }, []);
-
-  // Render your card component here
+export default function StoryCard({ id, image, excerpt }) {
   return (
-    <div className="card">
-      {cardData ? (
-        <div>
-          <h3>{cardData.post_title}</h3>
-          <p>{cardData.post_excerpt}</p>
-          <p>{cardData.post_img_url}</p>
-        </div>
-      ) : (
-        <p>Loading story card data...</p>
-      )}
+    <div>
+      <img src={image} />
+      <p>{excerpt}</p>
+      <Link to={`/stories/${id}`}>View Story</Link>
     </div>
   );
-};
-
-export default StoryCard;
+}

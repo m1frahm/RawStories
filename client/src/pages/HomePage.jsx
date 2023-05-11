@@ -1,40 +1,5 @@
-import { useEffect, useState } from "react";
-
-const useStories = () => {
-  const [stories, setStories] = useState([]);
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const r = await fetch("http://localhost:8090/api/stories");
-        const data = await r.json();
-        setStories(data);
-      } catch (e) {
-        alert(e.message);
-      }
-    };
-
-    getData();
-  }, []);
-
-  return stories;
-};
-
-const useLastStories = () => {
-  const stories = useStories();
-
-  return stories.slice(-1);
-};
-
-function StoryCard({ id, image, excerpt }) {
-  return (
-    <div>
-      <img src={image} />
-      <p>{excerpt}</p>
-      {id}
-    </div>
-  );
-}
+import StoryCard from "../components/StoryCard";
+import { useLastStories } from '../hooks/useLastStories'
 
 export default function HomePage() {
   const stories = useLastStories();

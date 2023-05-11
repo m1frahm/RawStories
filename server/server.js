@@ -72,10 +72,18 @@ app.get("/api/stories/:storyId", cors(), async (req, res) => {
       'SELECT * FROM posts WHERE "postID" = $1',
       [storyId]
     );
-    console.log(posts);
+
+    if (!posts.length) {
+      res.status(404).json({ e: 'not found' })
+
+      return
+    }
+
     res.send(posts[0]);
   } catch (e) {
-    return res.status(400).json({ e });
+    res.status(400).json({ e });
+
+    return
   }
 });
 
