@@ -69,7 +69,7 @@ app.get("/api/stories/:storyId", cors(), async (req, res) => {
     const { storyId = "" } = req.params;
     console.log({ storyId });
     const { rows: posts } = await db.query(
-      "SELECT * FROM posts WHERE posts.postID=$1",
+      'SELECT * FROM posts WHERE "postID" = $1',
       [storyId]
     );
     console.log(posts);
