@@ -17,6 +17,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import HomePage from "./pages/HomePage";
 import IndividualStoryPage from "./pages/IndividualStoryPage";
 import StoriesPage from "./pages/Stories";
+import AddNewStory from "./pages/AddNewStory";
 
 const router = createBrowserRouter([
   {
@@ -64,7 +65,7 @@ const router = createBrowserRouter([
           },
           {
             path: "new",
-            element: <div>Create Story</div>,
+            element: <AddNewStory />,
           },
           {
             path: ":storyId",

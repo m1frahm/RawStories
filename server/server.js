@@ -10,6 +10,9 @@ app.use(express.static(REACT_BUILD_DIR));
 const PORT = process.env.PORT || 8090;
 app.use(cors());
 app.use(express.json());
+const multer = require('multer')
+const storage = multer.memoryStorage()
+const upload = multer({ storage })
 
 // creates an endpoint for the route "/""
 app.get("/", (req, res) => {
@@ -74,16 +77,42 @@ app.get("/api/stories/:storyId", cors(), async (req, res) => {
     );
 
     if (!posts.length) {
-      res.status(404).json({ e: 'not found' })
+      res.status(404).json({ e: "not found" });
 
-      return
+      return;
     }
 
     res.send(posts[0]);
   } catch (e) {
     res.status(400).json({ e });
 
-    return
+    return;
+  }
+});
+
+// create a post request to be able to add a new story in the endpoint '/stories/new'
+app.post("/api/stories", cors(), upload.single('postImage'), async (req, res) => {
+  try {
+    const postImageDataUrl = req.file.buffer.toString('base64')
+    const postImageUrl = `data:${req.file.mimetype};base64,${postImageDataUrl}`
+    const payload = req.body;
+
+    const result = await db.query(
+      "INSERT INTO posts(post_title, interview_person_name, interview_person_occupation, interview_person_alma, post_body, post_excerpt, post_img_url) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      [
+        payload.postTitle,
+        payload.personName,
+        payload.personOccupation,
+        payload.personAlmaMatter,
+        payload.personStory,
+        payload.personStoryExcerpt,
+        postImageUrl
+      ]
+    );
+    const newStory = result.rows[0]
+    res.send(newStory);
+  } catch (e) {
+    return res.status(400).json({ e: e.message });
   }
 });
 
