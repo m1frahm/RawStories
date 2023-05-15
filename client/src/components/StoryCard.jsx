@@ -3,7 +3,7 @@ import { Button, Card, Image } from "semantic-ui-react";
 
 export default function StoryCard({ id, image, excerpt }) {
   return (
-    <Card color="pink">
+    <Card centered color="pink">
       <Image src={image} />
       <Card.Content>
         <Card.Description>{excerpt}</Card.Description>

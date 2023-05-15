@@ -31,9 +31,6 @@ const router = createBrowserRouter([
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link as={Link} to="/stories">
-                  All Stories
-                </Nav.Link>
                 <Nav.Link as={Link} to="/jobs">
                   Jobs
                 </Nav.Link>
@@ -54,15 +51,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />,
+        element: <StoriesPage />,
       },
       {
         path: "/stories",
         children: [
-          {
-            index: true,
-            element: <StoriesPage />,
-          },
           {
             path: "new",
             element: <AddNewStory />,

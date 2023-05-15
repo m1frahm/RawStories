@@ -12,7 +12,7 @@ export default function StoriesPage() {
     <div>
      <Title/>
       <Segment padded="very" textAlign="left">
-        <Button color="yellow" size="huge" floated="right" to="/stories/new">
+        <Button color="yellow" size="huge" floated="right" as={Link} to="/stories/new">
           {" "}
           Add New Story{" "}
         </Button>
