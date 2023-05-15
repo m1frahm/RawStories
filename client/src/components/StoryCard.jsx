@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
-import { Card } from "semantic-ui-react";
+import { Button, Card, Image } from "semantic-ui-react";
 
 export default function StoryCard({ id, image, excerpt }) {
   return (
     <Card>
-      <img src={image} />
-      <p>{excerpt}</p>
-      <Link to={`/stories/${id}`}>View Story</Link>
+      <Image src={image} />
+      <Card.Content>
+        <Card.Description>{excerpt}</Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+        <Button>
+          <Link to={`/stories/${id}`}>View Story</Link>
+        </Button>
+      </Card.Content>
     </Card>
   );
 }
