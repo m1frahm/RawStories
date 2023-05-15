@@ -3,6 +3,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Logo from "../assets/BlueTechtonicaWord.png";
 import { useAuth0 } from "@auth0/auth0-react";
+import Title from "./Header";
 
 function MyNavBar(props) {
   const { loginWithRedirect, logout } = useAuth0();
@@ -36,6 +37,7 @@ function MyNavBar(props) {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <Title />
     </>
   );
 }

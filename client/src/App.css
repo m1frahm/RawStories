@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 .App {
   min-height: 100vh;
   background-color: rgb(238, 232, 232);
@@ -70,4 +72,18 @@ button.btn.btn-primary {
 .card-body {
   margin-left: 2em;
   margin-right: 2em;
+}
+
+.Title {
+  color: black;
+  text-align: center;
+}
+
+.Title h1 {
+  font-size: 100px;
+  font-family: 'Lobster', cursive;
+}
+
+.Title h3 {
+  font-size: 25px;
 }
