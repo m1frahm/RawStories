@@ -92,6 +92,7 @@ app.get("/api/stories/:storyId", cors(), async (req, res) => {
 
 // create a post request to be able to add a new story in the endpoint '/stories/new'
 app.post("/api/stories", cors(), upload.single('postImage'), async (req, res) => {
+  // try code is handling an image's file upload and converting it to a string to store in the database
   try {
     const postImageDataUrl = req.file.buffer.toString('base64')
     const postImageUrl = `data:${req.file.mimetype};base64,${postImageDataUrl}`
