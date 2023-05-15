@@ -4,40 +4,43 @@ import Nav from "react-bootstrap/Nav";
 import Logo from "../assets/BlueTechtonicaWord.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import Title from "./Header";
+import { Link } from "react-router-dom";
 
 function MyNavBar(props) {
-  const { loginWithRedirect, logout } = useAuth0();
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  console.log(isAuthenticated);
 
   return (
     <>
-      <Navbar data-testid="navbar" bg="dark" variant="dark" sticky="top">
+      <Navbar bg="dark" expand="lg">
         <Container>
-          <Navbar.Brand href="/">
-            <img
-              src={Logo}
-              height="30"
-              className="d-lg-inline-block"
-              alt="React Bootstrap logo"
-            />
+          <Navbar.Brand as={Link} to="/">
+            Home
           </Navbar.Brand>
-          <Nav.Link>Your Link</Nav.Link>
-          <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
-            <Navbar.Text>
-              <button onClick={() => loginWithRedirect()}>Log In</button>
-              <button
-                onClick={() =>
-                  logout({ logoutParams: { returnTo: window.location.origin } })
-                }
-              >
-                {" "}
-                Log Out{" "}
-              </button>
-            </Navbar.Text>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link as={Link} to="/jobs">
+                Jobs
+              </Nav.Link>
+              {/* <Nav.Link as={Link} to="/profile"> */}
+                <button onClick={() => loginWithRedirect()}>Log In</button>
+              {/* </Nav.Link> */}
+              {/* <Nav.Link as={Link} to="/logout"> */}
+                <button
+                  onClick={() =>
+                    logout({
+                      logoutParams: { returnTo: window.location.origin },
+                    })
+                  }
+                >
+                  Log Out
+                </button>
+              {/* </Nav.Link> */}
+            </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Title />
     </>
   );
 }
