@@ -87,3 +87,10 @@ button.btn.btn-primary {
 .Title h3 {
   font-size: 25px;
 }
+
+.StoryDisplay {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+  padding-top: 80px;
+}
