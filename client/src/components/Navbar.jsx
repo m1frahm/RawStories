@@ -24,18 +24,18 @@ function MyNavBar(props) {
                 Jobs
               </Nav.Link>
               {/* <Nav.Link as={Link} to="/profile"> */}
-                <button onClick={() => loginWithRedirect()}>Log In</button>
+              <button onClick={() => loginWithRedirect()}>Log In</button>
               {/* </Nav.Link> */}
               {/* <Nav.Link as={Link} to="/logout"> */}
-                <button
-                  onClick={() =>
-                    logout({
-                      logoutParams: { returnTo: window.location.origin },
-                    })
-                  }
-                >
-                  Log Out
-                </button>
+              <button
+                onClick={() =>
+                  logout({
+                    logoutParams: { returnTo: window.location.origin },
+                  })
+                }
+              >
+                Log Out
+              </button>
               {/* </Nav.Link> */}
             </Nav>
           </Navbar.Collapse>
