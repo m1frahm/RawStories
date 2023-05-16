@@ -39,8 +39,8 @@ Please Note: You will need register to recieve an API ID and API Key
 # App Information
  ⚡ Create a working full stack app with React and Express in minutes by running your client using Vite, your server using Express, and dumping your db in the template ⚡
 
-## Step by Step instructions - To be Added  🚀  
-### In Progress
+## Step by Step instructions - Coming Soon  🚀  
+
 
 
 
