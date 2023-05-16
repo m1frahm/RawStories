@@ -7,7 +7,7 @@ export const useStory = ({ storyId }) => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const r = await fetch(`http://localhost:8090/api/stories/${storyId}`);
+        const r = await fetch(`8090/api/stories/${storyId}`);
         const data = await r.json();
         setStory(data);
       } catch (e) {

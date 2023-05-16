@@ -6,7 +6,7 @@ export const useStories = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const r = await fetch("http://localhost:8090/api/stories");
+        const r = await fetch("/api/stories");
         const data = await r.json();
         setStories(data);
       } catch (e) {
