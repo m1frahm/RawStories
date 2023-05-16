@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
+//Getting proxy to work again
 
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
