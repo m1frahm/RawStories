@@ -1,18 +1,18 @@
 const path = require("path");
-const REACT_BUILD_DIR = path.join(__dirname, "..", "client", "dist");
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const db = require("./db/db-connection.js");
 const dummydata = require("./dummydata.js");
 const app = express();
-app.use(express.static(REACT_BUILD_DIR));
 const PORT = process.env.PORT || 8090;
 app.use(cors());
 app.use(express.json());
-const multer = require('multer')
-const storage = multer.memoryStorage()
-const upload = multer({ storage })
+const REACT_BUILD_DIR = path.join(__dirname, "..", "client", "dist");
+app.use(express.static(REACT_BUILD_DIR));
+const multer = require("multer");
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 // creates an endpoint for the route "/""
 app.get("/", (req, res) => {
@@ -91,31 +91,36 @@ app.get("/api/stories/:storyId", cors(), async (req, res) => {
 });
 
 // create a post request to be able to add a new story in the endpoint '/stories/new'
-app.post("/api/stories", cors(), upload.single('postImage'), async (req, res) => {
-  // try code is handling an image's file upload and converting it to a string to store in the database
-  try {
-    const postImageDataUrl = req.file.buffer.toString('base64')
-    const postImageUrl = `data:${req.file.mimetype};base64,${postImageDataUrl}`
-    const payload = req.body;
+app.post(
+  "/api/stories",
+  cors(),
+  upload.single("postImage"),
+  async (req, res) => {
+    // try code is handling an image's file upload and converting it to a string to store in the database
+    try {
+      const postImageDataUrl = req.file.buffer.toString("base64");
+      const postImageUrl = `data:${req.file.mimetype};base64,${postImageDataUrl}`;
+      const payload = req.body;
 
-    const result = await db.query(
-      "INSERT INTO posts(post_title, interview_person_name, interview_person_occupation, interview_person_alma, post_body, post_excerpt, post_img_url) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-      [
-        payload.postTitle,
-        payload.personName,
-        payload.personOccupation,
-        payload.personAlmaMatter,
-        payload.personStory,
-        payload.personStoryExcerpt,
-        postImageUrl
-      ]
-    );
-    const newStory = result.rows[0]
-    res.send(newStory);
-  } catch (e) {
-    return res.status(400).json({ e: e.message });
+      const result = await db.query(
+        "INSERT INTO posts(post_title, interview_person_name, interview_person_occupation, interview_person_alma, post_body, post_excerpt, post_img_url) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+        [
+          payload.postTitle,
+          payload.personName,
+          payload.personOccupation,
+          payload.personAlmaMatter,
+          payload.personStory,
+          payload.personStoryExcerpt,
+          postImageUrl,
+        ]
+      );
+      const newStory = result.rows[0];
+      res.send(newStory);
+    } catch (e) {
+      return res.status(400).json({ e: e.message });
+    }
   }
-});
+);
 
 // // create the POST request
 // app.post("/api/students", async (req, res) => {

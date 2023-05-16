@@ -1,7 +1,7 @@
 const useNewStory = () => {
   const mutate = async (formData) => {
     try {
-      const r = await fetch("http://localhost:8090/api/stories", {
+      const r = await fetch("/api/stories", {
         method: "POST",
         body: formData
       }).then((r) => (r.ok ? Promise.resolve(r) : Promise.reject(r)));
