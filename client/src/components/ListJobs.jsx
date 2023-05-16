@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as ioicons from "react-icons/io5";
 import MyForm from "./Form";
 import Student from "./Student";
+import { Button, Card, Image } from "semantic-ui-react";
 
 //Note for any functions commented out, be sure to remove http://localhost:8081 if using (it might be 8080 or 8090 as well since ports changed)
 
@@ -73,10 +74,10 @@ const ListJobs = () => {
       <div className="list-students">
         <h2>Engineering Jobs</h2>
         <br></br>
-        <ul>
+        <Card.Group itemsPerRow={1}>
           {jobs.map((job, index) => {
             return (
-              <li key={index}>
+              <Card key={index}>
                 {" "}
                 {job.title}
                 <br></br>
@@ -88,10 +89,10 @@ const ListJobs = () => {
                 <br></br>
                 <br></br>
                 <a href={job.redirect_url}>Link to Apply</a>
-              </li>
+              </Card>
             );
           })}
-        </ul>
+        </Card.Group>
       </div>
       {/* <MyForm key={editingStudent ? editingStudent.id : null} onSaveStudent={onSaveStudent} editingStudent={editingStudent} onUpdateStudent={updateStudent} /> */}
     </div>
