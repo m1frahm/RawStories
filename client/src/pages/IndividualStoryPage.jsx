@@ -4,6 +4,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useStory } from '../hooks/useStory'
+import Title from "../components/Header";
 
 export default function IndividualStoryPage() {
   const { storyId = "" } = useParams();
@@ -16,6 +17,7 @@ export default function IndividualStoryPage() {
 //Individual Story Page
   return (
     <div>
+    <Title/>
       
       <b><h1>{story.post_title}</h1> </b>
       <h5><br></br>
