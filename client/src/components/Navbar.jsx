@@ -1,10 +1,8 @@
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Logo from "../assets/BlueTechtonicaWord.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import Title from "./Header";
 import { Link } from "react-router-dom";
+import { Button, Menu, Container, Image } from "semantic-ui-react";
+import Logo from "../assets/Logo.png";
 
 function MyNavBar(props) {
   const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
@@ -12,35 +10,45 @@ function MyNavBar(props) {
 
   return (
     <>
-      <Navbar bg="dark" expand="lg">
+      <Menu secondary>
         <Container>
-          <Navbar.Brand as={Link} to="/">
-            Home
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link as={Link} to="/jobs">
-                Jobs
-              </Nav.Link>
-              {/* <Nav.Link as={Link} to="/profile"> */}
-              <button onClick={() => loginWithRedirect()}>Log In</button>
-              {/* </Nav.Link> */}
-              {/* <Nav.Link as={Link} to="/logout"> */}
-              <button
-                onClick={() =>
-                  logout({
-                    logoutParams: { returnTo: window.location.origin },
-                  })
-                }
-              >
-                Log Out
-              </button>
-              {/* </Nav.Link> */}
-            </Nav>
-          </Navbar.Collapse>
+          <Menu.Item>
+            <Image src={Logo} avatar size="small" />
+          </Menu.Item>
+          <Menu.Menu position="right">
+            <Menu.Item>
+              <Button as={Link} to="/" color="violet">
+                {" "}
+                HOME
+              </Button>
+            </Menu.Item>
+            <Menu.Item>
+              <Button as={Link} to="/jobs" color="pink">
+                Explore Jobs
+              </Button>
+            </Menu.Item>
+            {/* <Nav.Link as={Link} to="/profile"> */}
+            <Menu.Item as={Link} onClick={() => loginWithRedirect()}>
+              Log In
+            </Menu.Item>
+
+            {/* </Nav.Link> */}
+            {/* <Nav.Link as={Link} to="/logout"> */}
+            <Menu.Item
+              as={Link}
+              onClick={() =>
+                logout({
+                  logoutParams: { returnTo: window.location.origin },
+                })
+              }
+            >
+              Log Out
+            </Menu.Item>
+          </Menu.Menu>
+
+          {/* </Nav.Link> */}
         </Container>
-      </Navbar>
+      </Menu>
     </>
   );
 }
