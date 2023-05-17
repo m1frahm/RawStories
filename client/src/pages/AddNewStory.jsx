@@ -1,6 +1,7 @@
 import { Form, Button, Message } from "semantic-ui-react";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Title from "../components/Header";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const useNewStory = () => {
   const mutate = async (formData) => {
@@ -21,25 +22,26 @@ const useNewStory = () => {
 };
 
 export default function AddNewStory() {
- const [success, SetSuccess] = useState(false)
-//   const [story, SetStory] = useState(
-//     state || {
-//         //user_id: null, 
-//         post_title: "",
-//         interview_person_name: "",
-//         interview_person_occupation: "",
-//         interview_person_alma: "",
-//         post_excerpt: "",
-//         post_body: "",
-//     }
-//   )
+  const { user } = useAuth0(); //pass user.id when submitting form
 
-//   const handleChange = (e) => {
-//     setStory ({ ...setStory, [e.target.name]: e.target.value})
-//   }
+  const [success, SetSuccess] = useState(false);
+  //   const [story, SetStory] = useState(
+  //     state || {
+  //         //user_id: null,
+  //         post_title: "",
+  //         interview_person_name: "",
+  //         interview_person_occupation: "",
+  //         interview_person_alma: "",
+  //         post_excerpt: "",
+  //         post_body: "",
+  //     }
+  //   )
+
+  //   const handleChange = (e) => {
+  //     setStory ({ ...setStory, [e.target.name]: e.target.value})
+  //   }
   // console.log(setStory.star_rating, 'stars!!!')
-  
-  
+
   const { mutate: createStory } = useNewStory();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -64,7 +66,7 @@ export default function AddNewStory() {
       });
   };
 
-  return ( 
+  return (
     <div>
       <Title />
       <div style={{ width: "800px", margin: "auto" }}>
@@ -104,11 +106,13 @@ export default function AddNewStory() {
             header="Succesfully Added"
             content="Thank you for posting your story!"
           />
-          <Button color="teal" type="submit">
-            Add New Story
-          </Button>
+           
+            <Button color="teal" type="submit">
+              Add New Story
+            </Button>
+          
         </Form>
       </div>
     </div>
   );
-  }
+}

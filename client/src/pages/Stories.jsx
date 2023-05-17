@@ -4,18 +4,28 @@ import StoryCard from "../components/StoryCard";
 import { useStories } from "../hooks/useStories";
 import { Button } from "semantic-ui-react";
 import Title from "../components/Header";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function StoriesPage() {
   const stories = useStories();
+  const { isAuthenticated } = useAuth0(); //isAuthenticated lets you know if user is logged in via Auth0
 
   return (
     <div>
-     <Title/>
+      <Title />
       <Segment padded="very" textAlign="left">
-        <Button color="yellow" size="huge" floated="right" as={Link} to="/stories/new">
-          {" "}
-          Add New Story{" "}
-        </Button>
+        {isAuthenticated ? (
+          <Button
+            color="yellow"
+            size="huge"
+            floated="right"
+            as={Link}
+            to="/stories/new"
+          >
+            {" "}
+            Add New Story{" "}
+          </Button>
+        ) : null}
         <br></br>
         <br></br>
         <br></br>
