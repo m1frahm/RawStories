@@ -33,7 +33,8 @@ export default function IndividualStoryPage() {
             Alma Matter: {story.interview_person_alma}
           </h5>
           <br></br>
-          {story.post_body}
+          {/* {story.post_body} this did not pick up the html markdowns*/}
+          <div dangerouslySetInnerHTML={{ __html: story.post_body }}></div>
         </Segment>
       </div>
     </div>
