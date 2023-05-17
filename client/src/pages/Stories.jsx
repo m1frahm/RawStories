@@ -25,7 +25,7 @@ export default function StoriesPage() {
             ? stories.map((story) => (
                 <StoryCard
                   key={story.post_title}
-                  id={story.postID}
+                  id={story.post_id}
                   image={story.post_img_url}
                   excerpt={story.post_excerpt}
                 />
