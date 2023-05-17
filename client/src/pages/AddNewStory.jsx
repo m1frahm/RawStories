@@ -1,9 +1,13 @@
+import { Form, Button, Message } from "semantic-ui-react";
+import React, {useState} from "react";
+import Title from "../components/Header";
+
 const useNewStory = () => {
   const mutate = async (formData) => {
     try {
       const r = await fetch("/api/stories", {
         method: "POST",
-        body: formData
+        body: formData,
       }).then((r) => (r.ok ? Promise.resolve(r) : Promise.reject(r)));
       const result = await r.json();
 
@@ -17,9 +21,29 @@ const useNewStory = () => {
 };
 
 export default function AddNewStory() {
+ const [success, SetSuccess] = useState(false)
+//   const [story, SetStory] = useState(
+//     state || {
+//         //user_id: null, 
+//         post_title: "",
+//         interview_person_name: "",
+//         interview_person_occupation: "",
+//         interview_person_alma: "",
+//         post_excerpt: "",
+//         post_body: "",
+//     }
+//   )
+
+//   const handleChange = (e) => {
+//     setStory ({ ...setStory, [e.target.name]: e.target.value})
+//   }
+  // console.log(setStory.star_rating, 'stars!!!')
+  
+  
   const { mutate: createStory } = useNewStory();
   const handleSubmit = (event) => {
     event.preventDefault();
+    SetSuccess(true);
 
     const formData = new FormData(event.target);
     // const payload = Array.from(formData.entries()).reduce(
@@ -33,25 +57,58 @@ export default function AddNewStory() {
 
     createStory(formData)
       .then(() => {
-        console.log("yei");
+        console.log("working");
       })
       .catch((e) => {
-        console.log("oops", e);
+        console.log("not working", e);
       });
   };
 
-  return (
+  return ( 
     <div>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <input placeholder="Title of Post" type="text" name="postTitle" />
-        <input placeholder="Name of Person" type="text" name="personName" />
-        <input placeholder="Person Occupation"type="text" name="personOccupation" />
-        <input placeholder="Person Alma Matter"type="text" name="personAlmaMatter" />
-        <input placeholder="Add Story Text Here"type="text" name="personStory" />
-        <input placeholder="Excerpt"type="text" name="personStoryExcerpt" />
-        <input type="file" name="postImage" />
-        <button type="submit">Add New Story</button>
-      </form>
+      <Title />
+      <div style={{ width: "800px", margin: "auto" }}>
+        <Form
+          success={success}
+          widths="equal"
+          onSubmit={handleSubmit}
+          encType="multipart/form-data"
+        >
+          <Form.Group width="equal">
+            <Form.Input label="Title of Post" type="text" name="postTitle" />
+          </Form.Group>
+          <Form.Group width="equal">
+            <Form.Input label="Name of Person" type="text" name="personName" />
+            <Form.Input
+              label="Person Occupation"
+              type="text"
+              name="personOccupation"
+            />
+            <Form.Input
+              label="Person Alma Matter"
+              type="text"
+              name="personAlmaMatter"
+            />
+          </Form.Group>
+
+          <Form.TextArea
+            label="Add Story Text Here"
+            type="text"
+            name="personStory"
+          />
+          <Form.Input label="Excerpt" type="text" name="personStoryExcerpt" />
+
+          <Form.Input type="file" name="postImage" />
+          <Message
+            success
+            header="Succesfully Added"
+            content="Thank you for posting your story!"
+          />
+          <Button color="teal" type="submit">
+            Add New Story
+          </Button>
+        </Form>
+      </div>
     </div>
   );
-}
+  }

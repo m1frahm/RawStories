@@ -67,10 +67,10 @@ app.get("/api/stories", cors(), async (req, res) => {
 });
 
 // create a get request for internal API posts in the endpoint '/stories/storyId'
-app.get("/api/stories/:storyId", cors(), async (req, res) => {
+app.get("/api/stories/:story_id", cors(), async (req, res) => {
   try {
-    const { storyId = "" } = req.params;
-    console.log({ storyId });
+    const { storyID = "" } = req.params;
+    console.log({ storyID });
     const { rows: posts } = await db.query(
       'SELECT * FROM posts WHERE "post_id" = $1',
       [storyId]
