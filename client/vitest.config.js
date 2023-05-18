@@ -8,7 +8,7 @@ export default defineConfig({
     plugins: [react()],
     test: {
         framework: 'vitest',
-        globals: true,
+        globals: true, //this allows you to use things like it or expect or test
         environment: 'jsdom',
     }
 })
