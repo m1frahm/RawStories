@@ -102,24 +102,17 @@ app.post(
       const postImageUrl = `data:${req.file.mimetype};base64,${postImageDataUrl}`;
       const payload = req.body;
 
-      const { formData, userEmail } = payload;
-
-      const resultUserId = await db.query(
-        "SELECT user_id FROM users WHERE email = $1",
-        [userEmail]
-      );
-
       const result = await db.query(
-        "INSERT INTO posts(post_title, interview_person_name, interview_person_occupation, interview_person_alma, post_body, post_excerpt, post_img_url, user_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+        "INSERT INTO posts(post_title, interview_person_name, interview_person_occupation, interview_person_alma, post_body, post_excerpt, post_img_url) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
         [
-          formData.postTitle,
-          formData.personName,
-          formData.personOccupation,
-          formData.personAlmaMatter,
-          formData.personStory,
-          formData.personStoryExcerpt,
+          payload.postTitle,
+          //payload.userID, // or whatever you call it in your form
+          payload.personName,
+          payload.personOccupation,
+          payload.personAlmaMatter,
+          payload.personStory,
+          payload.personStoryExcerpt,
           postImageUrl,
-          resultUserId, //this is referencing the line we made on 107
         ]
       );
       const newStory = result.rows[0];
