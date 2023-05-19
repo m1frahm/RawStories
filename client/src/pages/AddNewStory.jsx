@@ -1,5 +1,5 @@
 import { Form, Button, Message } from "semantic-ui-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../components/Header";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -23,7 +23,38 @@ const useNewStory = () => {
 
 export default function AddNewStory() {
   const { user } = useAuth0(); //pass user.id when submitting form
-  console.log({ user });
+  const [dbUser, setdbUser] = useState({});
+
+  console.log(user);
+  const addUser = () => {
+    console.log(user.email);
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ Email: user.email }),
+    };
+    fetch("/api/addUser", requestOptions)
+      .then((response) => response.json())
+      .then((result) => setdbUser(result));
+
+    // try {
+    //   const r = await fetch("/api/addUser", {
+    //     method: "POST",
+    //     body: JSON.stringify({ Email: user.email }),
+    //   }).then((r) => (r.ok ? Promise.resolve(r) : Promise.reject(r)));
+    //   const result = await r.json();
+
+    //   console.log({ result });
+    // } catch (e) {
+    //   console.log(e.message);
+    // }
+  };
+
+  useEffect(() => {
+    if (user) {
+      addUser();
+    }
+  }, [user]);
   const [success, SetSuccess] = useState(false);
 
   const { mutate: createStory } = useNewStory();
@@ -75,6 +106,11 @@ export default function AddNewStory() {
               label="Person Occupation"
               type="text"
               name="personOccupation"
+            />
+            <Form.Input
+              type="hidden"
+              name="userID"
+              value={dbUser ? dbUser.user_id : ""}
             />
             <Form.Input
               label="Person Alma Matter"

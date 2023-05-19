@@ -90,6 +90,32 @@ app.get("/api/stories/:storyID", cors(), async (req, res) => {
   }
 });
 
+// create the POST request for the users table
+app.post("/api/addUser", async (req, res) => {
+  try {
+    //in sql query we are checking to see if any user already exists with that email
+    const { rows: users } = await db.query(
+      "SELECT * FROM users WHERE user_email=$1",
+      [req.body.Email]
+    );
+    console.log(req.body.Email);
+    // checking to see if users is empty, and if it is, we want to insert the new user email into the users table
+    if (users.length == 0) {
+      const result = await db.query(
+        "INSERT INTO users(user_email) VALUES($1) RETURNING *",
+        [req.body.Email]
+      );
+      console.log(result.rows[0]);
+      res.json(result.rows[0]);
+    } else {
+      res.json(users[0]);
+    }
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ e });
+  }
+});
+
 // create a post request to be able to add a new story in the endpoint '/stories/new'
 app.post(
   "/api/stories",
@@ -101,9 +127,9 @@ app.post(
       const postImageDataUrl = req.file.buffer.toString("base64");
       const postImageUrl = `data:${req.file.mimetype};base64,${postImageDataUrl}`;
       const payload = req.body;
-
+      console.log("payload check", payload);
       const result = await db.query(
-        "INSERT INTO posts(post_title, interview_person_name, interview_person_occupation, interview_person_alma, post_body, post_excerpt, post_img_url) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+        "INSERT INTO posts(post_title, interview_person_name, interview_person_occupation, interview_person_alma, post_body, post_excerpt, post_img_url, user_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
         [
           payload.postTitle,
           //payload.userID, // or whatever you call it in your form
@@ -113,6 +139,7 @@ app.post(
           payload.personStory,
           payload.personStoryExcerpt,
           postImageUrl,
+          payload.userID,
         ]
       );
       const newStory = result.rows[0];
