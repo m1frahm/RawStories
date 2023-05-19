@@ -87,16 +87,29 @@ const ListJobs = () => {
                 return (
                   <Card key={index}>
                     {" "}
-                    Job Title: {job.title}
-                    <br></br>
-                    <br></br>
-                    Job Description: {job.description}
-                    <br></br>
-                    <br></br>
-                    Company Name: {job.company.display_name}
-                    <br></br>
-                    <br></br>
-                    <a href={job.redirect_url}>Link to Apply</a>
+                    <div className="JobCard">
+                      <p>
+                        <strong>Job Title:</strong> {job.title}
+                      </p>
+                      <p>
+                        <strong>Job Description:</strong> {job.description}
+                      </p>
+                      <p>
+                        <strong>Company Name:</strong>{" "}
+                        {job.company.display_name}
+                      </p>
+                      <Button
+                        as="a"
+                        href={job.redirect_url}
+                        primary
+                        style={{
+                          backgroundColor: "#121211",
+                          color: "white",
+                        }}
+                      >
+                        Apply Today
+                      </Button>
+                    </div>
                   </Card>
                 );
               })}
