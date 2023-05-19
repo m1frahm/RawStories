@@ -3,9 +3,27 @@ import React, { useState } from "react";
 import Title from "../components/Header";
 import { useAuth0 } from "@auth0/auth0-react";
 
+const useNewStory = () => {
+  const mutate = async (formData) => {
+    try {
+      const r = await fetch("/api/stories", {
+        method: "POST",
+        body: formData,
+      }).then((r) => (r.ok ? Promise.resolve(r) : Promise.reject(r)));
+      const result = await r.json();
+
+      console.log({ result });
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  return { mutate };
+};
+
 export default function AddNewStory() {
   const { user } = useAuth0(); //pass user.id when submitting form
-
+  console.log({ user });
   const [success, SetSuccess] = useState(false);
   //   const [story, SetStory] = useState(
   //     state || {
@@ -24,27 +42,7 @@ export default function AddNewStory() {
   //   }
   // console.log(setStory.star_rating, 'stars!!!')
 
-  const useNewStory = () => {
-    const mutate = async (formData) => {
-      const userEmail = user.email;
-      try {
-        const r = await fetch("/api/stories", {
-          method: "POST",
-          body: { formData, userEmail },
-        }).then((r) => (r.ok ? Promise.resolve(r) : Promise.reject(r)));
-        const result = await r.json();
-
-        console.log({ result });
-      } catch (e) {
-        console.log(e.message);
-      }
-    };
-
-    return { mutate };
-  };
-
   const { mutate: createStory } = useNewStory();
-
   const handleSubmit = (event) => {
     event.preventDefault();
     SetSuccess(true);
