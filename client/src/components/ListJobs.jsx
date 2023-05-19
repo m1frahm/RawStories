@@ -70,33 +70,41 @@ const ListJobs = () => {
   // }
 
   return (
-    <div className="mybody">
-      <div className="list-students">
-        <h1>Engineering Jobs</h1>
-        <h6>If these stories have inspired you to persist in your job search, take action now and submit your application!</h6>
-        <br></br>
-        <br></br>
-        <Card.Group itemsPerRow={1}>
-          {jobs.map((job, index) => {
-            return (
-              <Card key={index}>
-                {" "}
-                Job Title: {job.title}
-                <br></br>
-                <br></br>
-                Job Description: {job.description}
-                <br></br>
-                <br></br>
-                Company Name: {job.company.display_name}
-                <br></br>
-                <br></br>
-                <a href={job.redirect_url}>Link to Apply</a>
-              </Card>
-            );
-          })}
-        </Card.Group>
-      </div>
-      {/* <MyForm key={editingStudent ? editingStudent.id : null} onSaveStudent={onSaveStudent} editingStudent={editingStudent} onUpdateStudent={updateStudent} /> */}
+    <div>
+      <Segment basic padded="very" textAlign="left">
+        <div className="mybody">
+          <div className="list-students">
+            <h1>Engineering Jobs</h1>
+            <h6>
+              If these stories have inspired you to persist in your job search,
+              take action now and submit your application!
+            </h6>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Card.Group itemsPerRow={1}>
+              {jobs.map((job, index) => {
+                return (
+                  <Card key={index}>
+                    {" "}
+                    Job Title: {job.title}
+                    <br></br>
+                    <br></br>
+                    Job Description: {job.description}
+                    <br></br>
+                    <br></br>
+                    Company Name: {job.company.display_name}
+                    <br></br>
+                    <br></br>
+                    <a href={job.redirect_url}>Link to Apply</a>
+                  </Card>
+                );
+              })}
+            </Card.Group>
+          </div>
+          {/* <MyForm key={editingStudent ? editingStudent.id : null} onSaveStudent={onSaveStudent} editingStudent={editingStudent} onUpdateStudent={updateStudent} /> */}
+        </div>
+      </Segment>
     </div>
   );
 };
