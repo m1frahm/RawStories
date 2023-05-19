@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as ioicons from "react-icons/io5";
 import MyForm from "./Form";
 import { Button, Card, Image } from "semantic-ui-react";
+import { Segment } from "semantic-ui-react";
 
 //Note for any functions commented out, be sure to remove http://localhost:8081 if using (it might be 8080 or 8090 as well since ports changed)
 
@@ -71,20 +72,22 @@ const ListJobs = () => {
   return (
     <div className="mybody">
       <div className="list-students">
-        <h2>Engineering Jobs</h2>
+        <h1>Engineering Jobs</h1>
+        <h6>If these stories have inspired you to persist in your job search, take action now and submit your application!</h6>
+        <br></br>
         <br></br>
         <Card.Group itemsPerRow={1}>
           {jobs.map((job, index) => {
             return (
               <Card key={index}>
                 {" "}
-                {job.title}
+                Job Title: {job.title}
                 <br></br>
                 <br></br>
-                {job.description}
+                Job Description: {job.description}
                 <br></br>
                 <br></br>
-                {job.company.display_name}
+                Company Name: {job.company.display_name}
                 <br></br>
                 <br></br>
                 <a href={job.redirect_url}>Link to Apply</a>

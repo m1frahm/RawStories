@@ -70,6 +70,12 @@ export default function AddNewStory() {
     <div>
       <Title />
       <div style={{ width: "800px", margin: "auto" }}>
+        <br></br>
+        <br></br>
+        <div className="AddNewStoryTitle">
+          <h2>What's Your Story?</h2>
+        </div>
+        <br></br>
         <Form
           success={success}
           widths="equal"
@@ -100,7 +106,7 @@ export default function AddNewStory() {
           />
           <Form.Input label="Excerpt" type="text" name="personStoryExcerpt" />
 
-          <Form.Input type="file" name="postImage" />
+          <Form.Input label="Insert Image" type="file" name="postImage" />
           <Message
             success
             header="Succesfully Added"
