@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import Title from "./Header";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button, Menu, Container, Image } from "semantic-ui-react";
 import Logo from "../assets/Logo.png";
 

@@ -1,7 +1,6 @@
 // / -> story[].slice(-3) (all)
 // /stories/ -> story[] (all)
 // /stories/<storyId> -> story
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useStory } from "../hooks/useStory";
 import Title from "../components/Header";

@@ -25,22 +25,6 @@ export default function AddNewStory() {
   const { user } = useAuth0(); //pass user.id when submitting form
   console.log({ user });
   const [success, SetSuccess] = useState(false);
-  //   const [story, SetStory] = useState(
-  //     state || {
-  //         //user_id: null,
-  //         post_title: "",
-  //         interview_person_name: "",
-  //         interview_person_occupation: "",
-  //         interview_person_alma: "",
-  //         post_excerpt: "",
-  //         post_body: "",
-  //     }
-  //   )
-
-  //   const handleChange = (e) => {
-  //     setStory ({ ...setStory, [e.target.name]: e.target.value})
-  //   }
-  // console.log(setStory.star_rating, 'stars!!!')
 
   const { mutate: createStory } = useNewStory();
   const handleSubmit = (event) => {
