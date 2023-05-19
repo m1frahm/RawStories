@@ -11,9 +11,9 @@ export default function StoriesPage() {
   const { isAuthenticated } = useAuth0(); //isAuthenticated lets you know if user is logged in via Auth0
 
   return (
-    <div>
+    <div className="">
       <Title />
-      <Segment padded="very" textAlign="left">
+      <Segment basic padded="very" textAlign="left">
         {isAuthenticated ? (
           <Button
             color="yellow"

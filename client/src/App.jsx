@@ -18,7 +18,7 @@ import MyNavBar from "./components/Navbar";
 const router = createBrowserRouter([
   {
     element: (
-      <div>
+      <div className="DynamicWallpaper">
         <MyNavBar />
 
         <Outlet />
