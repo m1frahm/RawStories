@@ -60,8 +60,10 @@ app.get("/api/swejobs", async (req, res) => {
 app.get("/api/stories", cors(), async (req, res) => {
   try {
     const { rows: posts } = await db.query("SELECT * FROM posts");
+    console.log("checking posts", posts);
     res.send(posts);
   } catch (e) {
+    console.log("error we are trying to grab from catch", e);
     return res.status(400).json({ e });
   }
 });
