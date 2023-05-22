@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(REACT_BUILD_DIR, "index.html"));
 });
 
-// create the get request for students in the endpoint '/api/swe/jobs'
+// //create the get request for students in the endpoint '/api/swe/jobs'
 // app.get("/api/swejobs", async (req, res) => {
 //   const app_key = process.env.API_KEY;
 //   const app_id = process.env.API_ID;
