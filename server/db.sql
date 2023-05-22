@@ -322,10 +322,6 @@ INSERT INTO public.posts (post_id, post_title, post_excerpt, post_img_url, post_
 --
 
 INSERT INTO public.users (user_id, user_email) OVERRIDING SYSTEM VALUE VALUES (1, 'mifrah.malik@gmail.com');
-INSERT INTO public.users (user_id, user_email) OVERRIDING SYSTEM VALUE VALUES (2, NULL);
-INSERT INTO public.users (user_id, user_email) OVERRIDING SYSTEM VALUE VALUES (3, NULL);
-INSERT INTO public.users (user_id, user_email) OVERRIDING SYSTEM VALUE VALUES (4, NULL);
-INSERT INTO public.users (user_id, user_email) OVERRIDING SYSTEM VALUE VALUES (5, 'mifrah.malik@uconn.edu');
 
 
 --
