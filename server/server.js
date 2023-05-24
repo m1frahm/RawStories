@@ -14,6 +14,8 @@ const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
+
+//TODO
 // creates an endpoint for the route "/""
 app.get("/", (req, res) => {
   // res.json({ message: "Hola, from My template ExpressJS with React-Vite" });
@@ -35,8 +37,9 @@ app.get("/", (req, res) => {
 //     const URL = `https://api.adzuna.com/v1/api/jobs/gb/search/2?app_id=${app_id}&app_key=${app_key}&${params}`;
 //     let request = await fetch(URL);
 //     let result = await request.json();
+//TO DO 
 //     console.log(result);
-//     res.json(result);
+//     res.json(result); //res is response sent back to client 
 //   } catch (error) {
 //     console.log(error);
 //   }
@@ -48,6 +51,7 @@ app.get("/api/swejobs", async (req, res) => {
   res.send(jobs); //this was for the dummy data
 });
 
+//TO DO
 // try {
 //   const { rows: students } = await db.query("SELECT * FROM students");
 //   res.send(students);

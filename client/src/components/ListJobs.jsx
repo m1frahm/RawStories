@@ -17,7 +17,7 @@ const ListJobs = () => {
   // //   fetch("http://localhost:8081/api/swejobs") //previous way it worked
   //      fetch("/api/swejobs")
   //     .then((response) => response.json())
-  //     .then((jobs) => {
+  //     .then((jobs) => { //setting jobs variable to the response.json
   //       // console.log(jobs);
   //       setJobs(jobs.results); //jobs.results is for the api data vs jobs is for the dummy data to output correctly
   //     });
@@ -33,6 +33,7 @@ const ListJobs = () => {
       });
   };
 
+  //useEffect takes loadJobs and makes it run 
   useEffect(() => {
     loadJobs();
   }, []);
@@ -53,7 +54,9 @@ const ListJobs = () => {
             <br></br>
             <Card.Group itemsPerRow={1}>
               {jobs.map((job, index) => {
+                //Within map need a unique key for each element in the array 
                 return (
+ 
                   <Card key={index}>
                     {" "}
                     <div className="JobCard">

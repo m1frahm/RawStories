@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import Title from "../components/Header";
 import { useAuth0 } from "@auth0/auth0-react";
 
+//This could have been put into the hooks folder to be used later 
 const useNewStory = () => {
   const mutate = async (formData) => {
     try {
       const r = await fetch("/api/stories", {
         method: "POST",
         body: formData,
+        //TO DO //if response was okay, resolve the promise with the response otherwise reject the response 
       }).then((r) => (r.ok ? Promise.resolve(r) : Promise.reject(r)));
       const result = await r.json();
 
@@ -22,6 +24,7 @@ const useNewStory = () => {
 };
 
 export default function AddNewStory() {
+  //pulling user 
   const { user } = useAuth0(); //pass user.id when submitting form
   const [dbUser, setdbUser] = useState({});
 
@@ -57,7 +60,9 @@ export default function AddNewStory() {
   }, [user]);
   const [success, SetSuccess] = useState(false);
 
+  //using/pulling mutate from useNewStory and calling it create story 
   const { mutate: createStory } = useNewStory();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     SetSuccess(true);

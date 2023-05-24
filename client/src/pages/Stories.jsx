@@ -6,9 +6,11 @@ import { Button } from "semantic-ui-react";
 import Title from "../components/Header";
 import { useAuth0 } from "@auth0/auth0-react";
 
+
+//This page uses the useStories custom hook (which allows it to be reusable)
 export default function StoriesPage() {
   const stories = useStories();
-  const { isAuthenticated } = useAuth0(); //isAuthenticated lets you know if user is logged in via Auth0
+  const { isAuthenticated } = useAuth0(); //isAuthenticated lets you know if user is logged in via Auth0 && useAuth0 is a publicly available custom hook 
 
   return (
     <div className="">

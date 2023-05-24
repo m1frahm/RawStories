@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button, Card, Image } from "semantic-ui-react";
 
+
+//Passing id, image, and excerpt as props in Stories.jsx map inside return 
 export default function StoryCard({ id, image, excerpt }) {
   return (
     <Card centered color="pink">
