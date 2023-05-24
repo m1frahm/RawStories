@@ -126,7 +126,7 @@ app.post("/api/addUser", async (req, res) => {
 app.post(
   "/api/stories",
   cors(),
-  upload.single("postImage"),
+  upload.single("postImage"), //TODO
   async (req, res) => {
     // try code is handling an image's file upload and converting it to a string to store in the database
     try {

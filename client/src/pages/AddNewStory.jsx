@@ -53,11 +53,13 @@ export default function AddNewStory() {
     // }
   };
 
+    //TO DO //why add a new user each time?
   useEffect(() => {
     if (user) {
       addUser();
     }
-  }, [user]);
+  }, [user]); //every time a user changes we add in a new user 
+
   const [success, SetSuccess] = useState(false);
 
   //using/pulling mutate from useNewStory and calling it create story 
@@ -77,12 +79,13 @@ export default function AddNewStory() {
     //   {}
     // );
 
+      //TO DO - promises and async await
     createStory(formData)
       .then(() => {
-        console.log("working");
+        console.log("working"); //if the promise is resolves, then console.log working
       })
       .catch((e) => {
-        console.log("not working", e);
+        console.log("not working", e); //if the promise rejects //TO DO
       });
   };
 
