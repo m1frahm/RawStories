@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
 //custom built-in  for individual story
 export const useStory = ({ storyId }) => {

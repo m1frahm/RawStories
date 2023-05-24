@@ -55,7 +55,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  console.log(window.location.origin);
+ // console.log(window.location.origin);
   return <RouterProvider router={router} />;
 }
 

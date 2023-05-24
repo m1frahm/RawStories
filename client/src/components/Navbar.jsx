@@ -6,7 +6,7 @@ import Logo from "../assets/Logo.png";
 
 function MyNavBar(props) {
   const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
-  console.log(isAuthenticated);
+  //console.log(isAuthenticated); 
 
   return (
     <div>
