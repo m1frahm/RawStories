@@ -22,34 +22,34 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(REACT_BUILD_DIR, "index.html"));
 });
 
-// //create the get request for students in the endpoint '/api/swe/jobs'
-// app.get("/api/swejobs", async (req, res) => {
-//   const app_key = process.env.API_KEY;
-//   const app_id = process.env.API_ID;
-//   const params = new URLSearchParams({
-//     results_per_page: 100,
-//     what_or: "Engineer",
-//     title_only: "Developer",
-//     sort_by: "relevance",
-//     full_time: 1,
-//   });
-//   try {
-//     const URL = `https://api.adzuna.com/v1/api/jobs/gb/search/2?app_id=${app_id}&app_key=${app_key}&${params}`;
-//     let request = await fetch(URL);
-//     let result = await request.json();
-//TO DO 
-//     console.log(result);
-//     res.json(result); //res is response sent back to client 
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
-
-// // create the get request for students in the endpoint '/api/swe/jobs' for dummy data
+//create the get request for students in the endpoint '/api/swe/jobs'
 app.get("/api/swejobs", async (req, res) => {
-  const jobs = dummydata.results;
-  res.send(jobs); //this was for the dummy data
+  const app_key = process.env.API_KEY;
+  const app_id = process.env.API_ID;
+  const params = new URLSearchParams({
+    results_per_page: 100,
+    what_or: "Engineer",
+    title_only: "Developer",
+    sort_by: "relevance",
+    full_time: 1,
+  });
+  try {
+    const URL = `https://api.adzuna.com/v1/api/jobs/gb/search/2?app_id=${app_id}&app_key=${app_key}&${params}`;
+    let request = await fetch(URL);
+    let result = await request.json();
+//TO DO 
+    console.log(result);
+    res.json(result); //res is response sent back to client 
+  } catch (error) {
+    console.log(error);
+  }
 });
+
+// // // create the get request for students in the endpoint '/api/swe/jobs' for dummy data
+// app.get("/api/swejobs", async (req, res) => {
+//   const jobs = dummydata.results;
+//   res.send(jobs); //this was for the dummy data
+// });
 
 //TO DO
 // try {
