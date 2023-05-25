@@ -13,25 +13,25 @@ const ListJobs = () => {
   // const [editingStudent, setEditingStudent] = useState(null)
 
   ////A function to fetch the list of SWE jobs that will be load anytime that list change USING REAL API
-  const loadJobs = () => {
-  //   fetch("http://localhost:8081/api/swejobs") //previous way it worked
-       fetch("/api/swejobs")
-      .then((response) => response.json())
-      .then((jobs) => { //setting jobs variable to the response.json
-        // console.log(jobs);
-        setJobs(jobs.results); //jobs.results is for the api data vs jobs is for the dummy data to output correctly
-      });
-  };
-
-  // // A function to fetch the list of SWE jobs that will be load anytime that list change using DUMMY DATA
   // const loadJobs = () => {
-  //   fetch("/api/swejobs")
+  // //   fetch("http://localhost:8081/api/swejobs") //previous way it worked
+  //      fetch("/api/swejobs")
   //     .then((response) => response.json())
-  //     .then((jobs) => {
-  //      // console.log(jobs);
-  //       setJobs(jobs); //jobs.results is for the api data vs jobs is for the dummy data to output correctly
+  //     .then((jobs) => { //setting jobs variable to the response.json
+  //       // console.log(jobs);
+  //       setJobs(jobs.results); //jobs.results is for the api data vs jobs is for the dummy data to output correctly
   //     });
   // };
+
+  // A function to fetch the list of SWE jobs that will be load anytime that list change using DUMMY DATA
+  const loadJobs = () => {
+    fetch("/api/swejobs")
+      .then((response) => response.json())
+      .then((jobs) => {
+       // console.log(jobs);
+        setJobs(jobs); //jobs.results is for the api data vs jobs is for the dummy data to output correctly
+      });
+  };
 
   //useEffect takes loadJobs and makes it run 
   useEffect(() => {
