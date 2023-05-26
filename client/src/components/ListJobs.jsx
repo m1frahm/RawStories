@@ -23,7 +23,7 @@ const ListJobs = () => {
   //     });
   // };
 
-  // A function to fetch the list of SWE jobs that will be load anytime that list change using DUMMY DATA
+  // //A function to fetch the list of SWE jobs that will be load anytime that list change using DUMMY DATA
   const loadJobs = () => {
     fetch("/api/swejobs")
       .then((response) => response.json())
