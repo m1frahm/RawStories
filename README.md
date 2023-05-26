@@ -47,9 +47,63 @@ Copy the instructions from both .env.example files in the client and server.
 
   cd server && npm run dev
   
-  <h2 align="left">📄 Know about my experiences</h2>
+## User Flow    
+
+<h4 align="left">The Homepage View</h4>
+
+![Screenshot 2023-05-26 at 3 37 19 PM](https://github.com/m1frahm/RawStories/assets/119890190/a22d0f66-229b-48de-ab88-4515684ca77f)
+
+<h4 align="left">View An Individual Story by Clicking the View Story Button</h4>
+
+![Screenshot 2023-05-26 at 3 38 27 PM](https://github.com/m1frahm/RawStories/assets/119890190/e33fdfe6-22aa-45b9-b4cc-379c3a082ed4)
+
+<h4 align="left">Individual Story View (zoomed in)</h4>
+
+![Screenshot 2023-05-26 at 3 39 44 PM](https://github.com/m1frahm/RawStories/assets/119890190/955db386-e2fd-4ee3-b93a-f7e5090d13f7)
+
+<h4 align="left">Click on Login in NavBar</h4>
+
+![Screenshot 2023-05-26 at 3 40 50 PM](https://github.com/m1frahm/RawStories/assets/119890190/b445b993-5ca6-4211-9c56-15bfcc8d4cec)
+
+<h4 align="left">Notice Add New Story Button Appears</h4>
+
+![Screenshot 2023-05-26 at 3 41 27 PM](https://github.com/m1frahm/RawStories/assets/119890190/4596138b-5818-4629-a360-1bda67a136e7)
+
+<h4 align="left">Click on Add Story to be taken a new page with a Form</h4>
+
+![Screenshot 2023-05-26 at 3 42 22 PM](https://github.com/m1frahm/RawStories/assets/119890190/8b993693-f08e-4c8c-be77-5af248bcf282)
+
+<h4 align="left">Follow the labels to add New Story</h4>
+
+![Screenshot 2023-05-26 at 3 44 08 PM](https://github.com/m1frahm/RawStories/assets/119890190/a37757ab-3d46-405e-bb77-81f0ba48aa25)
+
+<h4 align="left">A Success Message Will Appear when you click "Add New Story" Button</h4>
+
+![Screenshot 2023-05-26 at 3 45 02 PM](https://github.com/m1frahm/RawStories/assets/119890190/ccbd3505-fd2e-40c6-bb51-6d553e6ddeff)
+
+<h4 align="left">The New Story Appears on the Homepage</h4>
+
+![Screenshot 2023-05-26 at 3 46 00 PM](https://github.com/m1frahm/RawStories/assets/119890190/158803a1-e953-4635-9774-2d9d9e6a6110)
+
+<h4 align="left">Click on Explore Jobs Button on NavBar</h4>
+
+![Screenshot 2023-05-26 at 3 48 01 PM](https://github.com/m1frahm/RawStories/assets/119890190/1c39dd31-2cb1-441d-b2d1-a2cc40be50c4)
+
+<h4 align="left">You will be redirected to a new page with Engineering Jobs with information coming from the Adzuna Jobs API</h4>
+
+![Screenshot 2023-05-26 at 3 48 56 PM](https://github.com/m1frahm/RawStories/assets/119890190/0174d274-1a21-4107-8b09-572a40e4e604)
+
+<h4 align="left">If you click on "Apply Today" you will be redirected to the job posting</h4>
+
+![Screenshot 2023-05-26 at 3 50 30 PM](https://github.com/m1frahm/RawStories/assets/119890190/04c339ae-df01-4e1a-9691-6188512f28cd)
+
+ <h2 align="left">📄 Know about my experiences</h2>
 
 [View Mifrah Resume](https://drive.google.com/file/d/1GnvXxGkDolrplzJ9YA9D8BxopiQIfcuW/view?usp=sharing)
+
+
+
+
 
 
 <h3 align="left">Connect with me:</h3>
