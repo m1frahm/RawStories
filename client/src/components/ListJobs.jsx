@@ -34,10 +34,10 @@ const ListJobs = () => {
   //     });
   // };
 
-  // //useEffect takes loadJobs and makes it run
-  // useEffect(() => {
-  //   loadJobs();
-  // }, []);
+  //useEffect takes loadJobs and makes it run
+  useEffect(() => {
+    loadJobs();
+  }, []);
 
   return (
     <div>
