@@ -5,6 +5,7 @@
 - 🔭 I’m currently working on [Raw Stories](https://github.com/m1frahm/RawStories) as part of my capstone project at Techtonica
 
 - If you want to see this project [Click Here](https://server-r0em.onrender.com/)
+- Please Note: I am using the free version of Render to deploy my website, which can take upto 3-5 to load a page
 
 
 
@@ -69,11 +70,11 @@ Copy the instructions from both .env.example files in the client and server.
 
 ![Screenshot 2023-05-26 at 3 41 27 PM](https://github.com/m1frahm/RawStories/assets/119890190/4596138b-5818-4629-a360-1bda67a136e7)
 
-<h4 align="left">Click on Add Story to be taken a new page with a Form</h4>
+<h4 align="left">Click on Add Story to be taken to a new page with a Form</h4>
 
 ![Screenshot 2023-05-26 at 3 42 22 PM](https://github.com/m1frahm/RawStories/assets/119890190/8b993693-f08e-4c8c-be77-5af248bcf282)
 
-<h4 align="left">Follow the labels to add New Story</h4>
+<h4 align="left">Follow the labels to add a New Story</h4>
 
 ![Screenshot 2023-05-26 at 3 44 08 PM](https://github.com/m1frahm/RawStories/assets/119890190/a37757ab-3d46-405e-bb77-81f0ba48aa25)
 
