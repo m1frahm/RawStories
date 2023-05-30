@@ -18,11 +18,11 @@ const fetch = require("node-fetch");
 //TODO
 // creates an endpoint for the route "/""
 app.get("/", (req, res) => {
-  // res.json({ message: "Hola, from My template ExpressJS with React-Vite" });
+  // res.json({ message: "Hola, from My template ExpressJS with React-Vite" }); //testing purposes only
   res.sendFile(path.join(REACT_BUILD_DIR, "index.html"));
 });
 
-//create the get request for students in the endpoint '/api/swe/jobs'
+//create the GET REQUEST for jobs in the endpoint '/api/swe/jobs'
 app.get("/api/swejobs", async (req, res) => {
   const app_key = process.env.API_KEY;
   const app_id = process.env.API_ID;
@@ -51,14 +51,6 @@ app.get("/api/swejobs", async (req, res) => {
 //   res.send(jobs); //this was for the dummy data
 // });
 
-//TO DO
-// try {
-//   const { rows: students } = await db.query("SELECT * FROM students");
-//   res.send(students);
-// } catch (e) {
-//   return res.status(400).json({ e });
-// }
-//});
 
 // create a get request for internal API posts in the endpoint '/stories'
 app.get("/api/stories", cors(), async (req, res) => {
@@ -96,7 +88,8 @@ app.get("/api/stories/:storyID", cors(), async (req, res) => {
   }
 });
 
-// create the POST request for the users table
+// // create the POST REQUEST for the users table
+// // It checks if a user with the same email already exists in the database. If not, it inserts the email into the users table and returns the newly inserted user object. If a user with the same email exists, it returns the existing user object.
 app.post("/api/addUser", async (req, res) => {
   try {
     //in sql query we are checking to see if any user already exists with that email
@@ -122,30 +115,32 @@ app.post("/api/addUser", async (req, res) => {
   }
 });
 
-// create a post request to be able to add a new story in the endpoint '/stories/new'
+// // create a POST REQUEST to be able to add a new story in the endpoint '/stories/new'
 app.post(
   "/api/stories",
   cors(),
-  upload.single("postImage"), //TODO
+  // // Middleware that handles file uploads. It expects a single file with the field name "postImage" in the request payload. The uploaded file is stored in the req.file object
+  upload.single("postImage"), 
   async (req, res) => {
-    // try code is handling an image's file upload and converting it to a string to store in the database
+    // // try code is handling an image's file upload and converting it to a string to store in the database
     try {
+      // // uploaded file is converted to a base64-encoded string 
       const postImageDataUrl = req.file.buffer.toString("base64");
+      // // Forms a data URL that represents the uploaded image.
       const postImageUrl = `data:${req.file.mimetype};base64,${postImageDataUrl}`;
       const payload = req.body;
-      console.log("payload check", payload);
+      // console.log("payload check", payload); //testing purposes only
       const result = await db.query(
         "INSERT INTO posts(post_title, interview_person_name, interview_person_occupation, interview_person_alma, post_body, post_excerpt, post_img_url, user_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
         [
           payload.postTitle,
-          //payload.userID, // or whatever you call it in your form
           payload.personName,
           payload.personOccupation,
           payload.personAlmaMatter,
           payload.personStory,
           payload.personStoryExcerpt,
           postImageUrl,
-          payload.userID,
+          payload.userID, //payload.userID, // called in form
         ]
       );
       const newStory = result.rows[0];
@@ -156,113 +151,7 @@ app.post(
   }
 );
 
-// // create the POST request
-// app.post("/api/students", async (req, res) => {
-//   try {
-//     const newStudent = {
-//       firstname: req.body.firstname,
-//       lastname: req.body.lastname,
-//       iscurrent: req.body.iscurrent,
-//     };
-//     //console.log([newStudent.firstname, newStudent.lastname, newStudent.iscurrent]);
-//     const result = await db.query(
-//       "INSERT INTO students(firstname, lastname, is_current) VALUES($1, $2, $3) RETURNING *",
-//       [newStudent.firstname, newStudent.lastname, newStudent.iscurrent]
-//     );
-//     console.log(result.rows[0]);
-//     res.json(result.rows[0]);
-//   } catch (e) {
-//     console.log(e);
-//     return res.status(400).json({ e });
-//   }
-// });
-
-// fetch(
-//add url here "add here",
-
-//   requestOptions
-// )
-//   .then((response) => response.text())
-//   .then((result) => res.send(result))
-//   .catch((error) => console.log("error", error));
-// const jobs = dummydata.results;
-// res.send(jobs);
-// try {
-//   const { rows: students } = await db.query("SELECT * FROM students");
-//   res.send(students);
-// } catch (e) {
-//   return res.status(400).json({ e });
-// }
-//});
-
-// // create the POST request
-// app.post("/api/students", async (req, res) => {
-//   try {
-//     const newStudent = {
-//       firstname: req.body.firstname,
-//       lastname: req.body.lastname,
-//       iscurrent: req.body.iscurrent,
-//     };
-//     //console.log([newStudent.firstname, newStudent.lastname, newStudent.iscurrent]);
-//     const result = await db.query(
-//       "INSERT INTO students(firstname, lastname, is_current) VALUES($1, $2, $3) RETURNING *",
-//       [newStudent.firstname, newStudent.lastname, newStudent.iscurrent]
-//     );
-//     console.log(result.rows[0]);
-//     res.json(result.rows[0]);
-//   } catch (e) {
-//     console.log(e);
-//     return res.status(400).json({ e });
-//   }
-// });
-
-// // delete request for students
-// app.delete("/api/students/:studentId", async (req, res) => {
-//   try {
-//     const studentId = req.params.studentId;
-//     await db.query("DELETE FROM students WHERE id=$1", [studentId]);
-//     console.log("From the delete request-url", studentId);
-//     res.status(200).end();
-//   } catch (e) {
-//     console.log(e);
-//     return res.status(400).json({ e });
-//   }
-// });
-
-// //A put request - Update a student
-// app.put("/api/students/:studentId", async (req, res) => {
-//   //console.log(req.params);
-//   //This will be the id that I want to find in the DB - the student to be updated
-//   const studentId = req.params.studentId;
-//   const updatedStudent = {
-//     id: req.body.id,
-//     firstname: req.body.firstname,
-//     lastname: req.body.lastname,
-//     iscurrent: req.body.is_current,
-//   };
-//   console.log("In the server from the url - the student id", studentId);
-//   console.log(
-//     "In the server, from the react - the student to be edited",
-//     updatedStudent
-//   );
-//   // UPDATE students SET lastname = "something" WHERE id="16";
-//   const query = `UPDATE students SET firstname=$1, lastname=$2, is_current=$3 WHERE id=${studentId} RETURNING *`;
-//   const values = [
-//     updatedStudent.firstname,
-//     updatedStudent.lastname,
-//     updatedStudent.iscurrent,
-//   ];
-//   try {
-//     const updated = await db.query(query, values);
-//     console.log(updated.rows[0]);
-//     res.send(updated.rows[0]);
-//   } catch (e) {
-//     console.log(e);
-//     return res.status(400).json({ e });
-//   }
-// });
-
 // console.log that your server is up and running
 app.listen(PORT, () => {
-  console.log(`Hola, Server listening on ${PORT}`);
+  console.log(`Back-end Server listening on ${PORT}`);
 });
