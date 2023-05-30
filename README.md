@@ -5,6 +5,7 @@
 - 🔭 I’m currently working on [Raw Stories](https://github.com/m1frahm/RawStories) as part of my capstone project at Techtonica
 
 - If you want to see this project [Click Here](https://server-r0em.onrender.com/)
+- Please Note: I am using the free version of Render to deploy my website, which can take upto 3-5 to load a page
 
 
 
