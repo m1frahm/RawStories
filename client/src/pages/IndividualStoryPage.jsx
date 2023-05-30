@@ -1,6 +1,6 @@
-import { useParams } from "react-router-dom";
 import { useStory } from "../hooks/useStory";
 import Title from "../components/Header";
+import { useParams } from "react-router-dom";
 import { Segment } from "semantic-ui-react";
 
 export default function IndividualStoryPage() {

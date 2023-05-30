@@ -1,5 +1,5 @@
-import {render, screen} from "@testing-library/react"; //standard line to add 
 import Header from "./Header";
+import {render, screen} from "@testing-library/react"; //standard line to add 
 import {expect} from "vitest";
 
 //3 testing steps

@@ -1,36 +1,34 @@
-import { Form, Button, Message } from "semantic-ui-react";
-import React, { useEffect, useState } from "react";
 import Title from "../components/Header";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Form, Button, Message } from "semantic-ui-react";
+import React, { useEffect, useState } from "react";
 
-//This could have been put into the hooks folder to be used later 
+//This could have been put into the hooks folder to be used later
 const useNewStory = () => {
   const mutate = async (formData) => {
     try {
       const r = await fetch("/api/stories", {
         method: "POST",
         body: formData,
-        //TO DO //if response was okay, resolve the promise with the response otherwise reject the response 
+        //if response was okay, resolve the promise with the response otherwise reject the response
       }).then((r) => (r.ok ? Promise.resolve(r) : Promise.reject(r)));
       const result = await r.json();
-
-      console.log({ result });
+     // console.log({ result });
     } catch (e) {
       console.log(e.message);
     }
   };
-
   return { mutate };
 };
 
 export default function AddNewStory() {
-  //pulling user 
+  //pulling user
   const { user } = useAuth0(); //pass user.id when submitting form
   const [dbUser, setdbUser] = useState({});
 
-  console.log(user);
+  // console.log(user);
   const addUser = () => {
-    console.log(user.email);
+    //console.log(user.email);
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -39,53 +37,33 @@ export default function AddNewStory() {
     fetch("/api/addUser", requestOptions)
       .then((response) => response.json())
       .then((result) => setdbUser(result));
-
-    // try {
-    //   const r = await fetch("/api/addUser", {
-    //     method: "POST",
-    //     body: JSON.stringify({ Email: user.email }),
-    //   }).then((r) => (r.ok ? Promise.resolve(r) : Promise.reject(r)));
-    //   const result = await r.json();
-
-    //   console.log({ result });
-    // } catch (e) {
-    //   console.log(e.message);
-    // }
   };
 
-    //TO DO //why add a new user each time?
+ //The purpose of the useEffect hook in this code is to add a new user to the server every time the user value changes.
   useEffect(() => {
     if (user) {
       addUser();
     }
-  }, [user]); //every time a user changes we add in a new user 
+  }, [user]); 
 
   const [success, SetSuccess] = useState(false);
 
-  //using/pulling mutate from useNewStory and calling it create story 
+  //using/pulling mutate from useNewStory custom hook and calling it createStory
   const { mutate: createStory } = useNewStory();
 
+  //Prevents default form submission
   const handleSubmit = (event) => {
     event.preventDefault();
     SetSuccess(true);
 
     const formData = new FormData(event.target);
-    // const payload = Array.from(formData.entries()).reduce(
-    //   //payload common name for data you send to back-end, look at dev console as well for ref
-    //   (output, [inputName, inputValue]) => ({
-    //     ...output,
-    //     [inputName]: inputValue,
-    //   }),
-    //   {}
-    // );
 
-      //TO DO - promises and async await
     createStory(formData)
       .then(() => {
         console.log("working"); //if the promise is resolves, then console.log working
       })
       .catch((e) => {
-        console.log("not working", e); //if the promise rejects //TO DO
+        console.log("not working", e); //if the promise rejects ... " "
       });
   };
 

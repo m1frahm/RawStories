@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 export const useStory = ({ storyId }) => {
   const [story, setStory] = useState(undefined);
 
+  //fetches data for an individual story based on the provided storyId.
   useEffect(() => {
     const getData = async () => {
       try {

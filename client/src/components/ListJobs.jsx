@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
 import * as ioicons from "react-icons/io5";
-
 import { Button, Card, Image } from "semantic-ui-react";
 import { Segment } from "semantic-ui-react";
 //Note for any functions commented out, be sure to remove http://localhost:8081 if using (it might be 8080 or 8090 as well since ports changed)
 
 const ListJobs = () => {
-  // this is my original state with an array of students
   const [jobs, setJobs] = useState([]);
 
-  //this is the state needed for the UpdateRequest
-  // const [editingStudent, setEditingStudent] = useState(null)
-
+  
   //A function to fetch the list of SWE jobs that will be load anytime that list change USING REAL API
   const loadJobs = () => {
     //   fetch("http://localhost:8081/api/swejobs") //previous way it worked
